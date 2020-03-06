@@ -1,5 +1,7 @@
 # Preformance testing with K6 and Keycloak
 
+- Set the `server`, `realm`, `grantType`, `clientId`, `clientSecret` variables in the collection
+- Create a `token` variable with no data to the collection
 - Add the following script into your collections Pre-request scripts:
 
 ```javascript
