@@ -20,7 +20,7 @@ postman[Symbol.for("initial")]({
 
 export default function() {
   postman[Pre].push(() => {
-    if (pm.variables.get("token") !== "") {
+    if (pm.variables.get("token") === undefined) {
       var url = `${pm.variables.get("server")}/auth/realms/${pm.variables.get(
         "realm"
       )}/protocol/openid-connect/token`;
@@ -45,7 +45,7 @@ export default function() {
 
   postman[Request]({
     name: "GET - TothNET",
-    id: "ea52bb6f-cf6c-42e3-936d-916a9ace52f4",
+    id: "0d97c94d-5d04-471b-8473-27d739a3795c",
     method: "GET",
     address: "https://www.tothnet.hu/",
     data: {},

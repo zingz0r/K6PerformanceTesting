@@ -83,7 +83,7 @@
 				"id": "3de99161-e398-41f2-9315-e9bdacc39532",
 				"type": "text/javascript",
 				"exec": [
-					"if (pm.variables.get(\"token\") !== \"\") {",
+					"if (pm.variables.get(\"token\") === undefined) {",
 					"    var url = `${pm.variables.get(\"server\")}/auth/realms/${pm.variables.get(\"realm\")}/protocol/openid-connect/token`;",
 					"    ",
 					"    var payload = {",
@@ -119,37 +119,37 @@
 	],
 	"variable": [
 		{
-			"id": "e30d0084-d57a-4ae7-99d4-2e94c2adeb2e",
+			"id": "5976e2bf-415f-40d8-9dc1-310aa704f109",
 			"key": "token",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "88800ac9-3fdd-43cb-90e5-e4b215853877",
+			"id": "1b770903-326a-4f76-9070-a5d77f7993f9",
 			"key": "server",
 			"value": "http://10.0.0.50:8080",
 			"type": "string"
 		},
 		{
-			"id": "20ca507d-3ef0-404b-a2ac-f91019e99623",
+			"id": "86c4373b-cc57-4320-bdc1-c65b9892be34",
 			"key": "realm",
 			"value": "master",
 			"type": "string"
 		},
 		{
-			"id": "4ba0f62f-cf9f-4f44-b67d-fbb706659f40",
+			"id": "2de33d70-c414-4e22-849f-5e8052441e72",
 			"key": "grantType",
 			"value": "client_credentials",
 			"type": "string"
 		},
 		{
-			"id": "a776da1e-97fd-4a37-aa2f-5db86c501d4d",
+			"id": "ef3d7ea8-9c41-44e7-ba2d-68a88f7a0421",
 			"key": "clientId",
 			"value": "test",
 			"type": "string"
 		},
 		{
-			"id": "3fc164f1-4693-4b96-b17c-2ea47174bd92",
+			"id": "d0c9f8ed-71e1-4651-bb87-99b02b094cc7",
 			"key": "clientSecret",
 			"value": "9dc03e84-6f43-4616-a24c-6cf9a54aabe2",
 			"type": "string"
