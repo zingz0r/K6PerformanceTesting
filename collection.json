@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "9bedda40-bb25-4608-9853-598e66081d86",
+		"name": "TestCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - TothNET",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a35d6fe0-2ec1-43bc-a4be-ad7b78404e3a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b96cde20-4153-4c4b-9fb9-b39ee0baf8d7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tothnet.hu",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tothnet",
+						"hu"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3de99161-e398-41f2-9315-e9bdacc39532",
+				"type": "text/javascript",
+				"exec": [
+					"if (pm.variables.get(\"token\") !== \"\") {",
+					"    var url = `${pm.variables.get(\"server\")}/auth/realms/${pm.variables.get(\"realm\")}/protocol/openid-connect/token`;",
+					"    ",
+					"    var payload = {",
+					"      grant_type: pm.variables.get(\"grantType\"),",
+					"      client_id: pm.variables.get(\"clientId\"),",
+					"      client_secret: pm.variables.get(\"clientSecret\")",
+					"    };",
+					"    ",
+					"    var params = {",
+					"      headers: {",
+					"        \"Content-Type\": \"application/x-www-form-urlencoded\"",
+					"      }",
+					"    };",
+					"    ",
+					"    var kcResult = http.post(url, payload, params);",
+					"    var jsonResult = JSON.parse(kcResult.body);",
+					"    pm.environment.set('token', jsonResult.access_token);",
+					"}",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fb55cb86-89f3-4ffb-a55d-012f5cce1b91",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e30d0084-d57a-4ae7-99d4-2e94c2adeb2e",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "88800ac9-3fdd-43cb-90e5-e4b215853877",
+			"key": "server",
+			"value": "http://10.0.0.50:8080",
+			"type": "string"
+		},
+		{
+			"id": "20ca507d-3ef0-404b-a2ac-f91019e99623",
+			"key": "realm",
+			"value": "master",
+			"type": "string"
+		},
+		{
+			"id": "4ba0f62f-cf9f-4f44-b67d-fbb706659f40",
+			"key": "grantType",
+			"value": "client_credentials",
+			"type": "string"
+		},
+		{
+			"id": "a776da1e-97fd-4a37-aa2f-5db86c501d4d",
+			"key": "clientId",
+			"value": "test",
+			"type": "string"
+		},
+		{
+			"id": "3fc164f1-4693-4b96-b17c-2ea47174bd92",
+			"key": "clientSecret",
+			"value": "9dc03e84-6f43-4616-a24c-6cf9a54aabe2",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
