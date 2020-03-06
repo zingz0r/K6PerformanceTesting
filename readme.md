@@ -27,4 +27,5 @@ if (pm.variables.get("token") === undefined) {
 ```
 
 - Add authentication "Bearer token" to the collection and set the token to `{{token}}`
+- Export collection as `collection.json`
 - Start `runstest.bat` to begin the performance test
