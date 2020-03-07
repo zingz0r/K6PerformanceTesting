@@ -2,7 +2,17 @@
 
 import "./libs/shim/core.js";
 
-export let options = { maxRedirects: 4, iterations: "1000" };
+export let options = { maxRedirects: 4,   stages: [
+  { duration: '2m', target: 50 }, // below normal load
+  { duration: '5m', target: 50 },
+  { duration: '2m', target: 70 }, // normal load
+  { duration: '5m', target: 70 },
+  { duration: '2m', target: 100 }, // around the breaking point
+  { duration: '5m', target: 100 },
+  { duration: '2m', target: 200 }, // beyond the breaking point
+  { duration: '5m', target: 200 },
+  { duration: '10m', target: 0 }, // scale down. Recovery stage.
+] };
 
 const Pre = Symbol.for("pre");
 const Request = Symbol.for("request");
@@ -45,7 +55,7 @@ export default function() {
 
   postman[Request]({
     name: "GET - TothNET",
-    id: "0d97c94d-5d04-471b-8473-27d739a3795c",
+    id: "086259cb-e9c0-4b9f-bc7d-79000838a2aa",
     method: "GET",
     address: "https://www.tothnet.hu/",
     data: {},
