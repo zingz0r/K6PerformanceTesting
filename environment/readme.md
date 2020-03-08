@@ -1,4 +1,4 @@
-# How to setup K6 dashboard in Graphana with influxdb
+# How to setup K6 dashboard in Graphana with InfluxDb
 
 ## Install
 
