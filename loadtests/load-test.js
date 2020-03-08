@@ -1,4 +1,5 @@
 import http from 'k6/http'; 
+import { check } from "k6";
 
 export let options = { maxRedirects: 4, vus: 10, duration: '10s' };
 

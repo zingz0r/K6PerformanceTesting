@@ -1,4 +1,5 @@
 import http from 'k6/http'; 
+import { check } from "k6";
 
 export let options = { maxRedirects: 4,   stages: [
   { duration: '5s', target: 1 }, // below normal load
