@@ -13,5 +13,8 @@ export let options = { maxRedirects: 4,   stages: [
 ] };
 
 export default function() {
-  http.get('https://www.tothnet.hu');
+  let res = http.get("http://test.k6.io/");
+  check(res, {
+    "is status 200": r => r.status === 200
+  });
 }
