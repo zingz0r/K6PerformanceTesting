@@ -5,3 +5,4 @@
 /.vs
 /environment/influxdb
 /environment/grafana
+/environment/jenkins_data
