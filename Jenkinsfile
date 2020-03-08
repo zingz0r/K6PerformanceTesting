@@ -9,16 +9,17 @@ pipeline {
     stages {
         stage('Load Testing') {
             steps {
-                echo 'Running K6 load tests...'
                 sh 'docker run --network host -v //c/Users/zingz0r/Desktop/k6/loadtests:/data/ loadimpact/k6 run /data/load-test.js --out influxdb=${INFLUXDB_HOST}/${INFLUXDB_NAME}'
-                echo 'Completed Running K6 load tests!'
             }
         }
         stage('Performance Testing') {
             steps {
-                echo 'Running K6 performance tests...'
                 sh 'docker run --network host -v //c/Users/zingz0r/Desktop/k6/loadtests:/data/ loadimpact/k6 run /data/performance-test.js --out influxdb=${INFLUXDB_HOST}/${INFLUXDB_NAME}'
-                echo 'Completed Running K6 performance tests!'
+            }
+        }
+        stage('Failing Check') {
+            steps {
+                sh 'docker run --network host -v //c/Users/zingz0r/Desktop/k6/loadtests:/data/ loadimpact/k6 run /data/fail-jenkins-test.js --out influxdb=${INFLUXDB_HOST}/${INFLUXDB_NAME}'
             }
         }
     }
